@@ -22,7 +22,7 @@ class Pais(
  * Acá creo un método que al asignar limítrofe
  * a un pais con otro completa la relación recíproca.
  */
-  fun sonLimitrofesCon(pais: Pais) {
+  fun agregarPaisLimitrofeMutuo(pais: Pais) {
     this.agregarPaisLimitrofe(pais)
     pais.agregarPaisLimitrofe(this)
   }
@@ -51,24 +51,6 @@ class Pais(
  * deberían dar como resultado brasil.
  */
   fun vecinoMasPoblado(): Pais = (paisesLimitrofes + this).maxByOrNull { p -> p.poblacion }!!
-/*
-  fun vecinoMasPoblado(): Pais?{
-      var vecinoMasPoblado: Pais?
-      if (!esUnaIsla()){
-          var maximaPoblacion = paisesLimitrofes.maxOf{ p->p.poblacion }
-          if (maximaPoblacion > poblacion){
-              vecinoMasPoblado = paisesLimitrofes.find { p-> p.poblacion == maximaPoblacion }
-          }
-          else{
-              vecinoMasPoblado= this
-          }
-      }
-      else{
-          vecinoMasPoblado = this
-      }
-      return vecinoMasPoblado
-  }
-*/
 
 /* Para dos países en particular:
  *
@@ -103,8 +85,6 @@ class Pais(
   fun cambioADolar(montoMonedaLocal: Double): Double = montoMonedaLocal/cotizacionDolar
 
   fun cambioAMonedaLocal(montoDolar: Double): Double = montoDolar * cotizacionDolar
-/*
-  fun aCuantoEquivaleEn(monto: Double, pais: Pais): Double =  monto/cotizacionDolar * pais.cotizacionDolar
- */
+
   fun aCuantoEquivaleEn(montoMonedaLocal: Double, pais: Pais): Double = pais.cambioAMonedaLocal(this.cambioADolar(montoMonedaLocal))
 }

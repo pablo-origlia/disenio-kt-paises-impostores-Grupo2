@@ -25,6 +25,7 @@ object Observatorio {
   // Teniendo en cuenta la integridad de la relación limítrofe si verifico en un pais es suficiente.
   // Por otro lado, según la especificación del problema estos métodos pueden dar VERDADERO, FALSO o NULL
   // en el caso que alguno de los Strings no representen a algún pais válido.
+
   fun sonLimitrofes(paisA: String, paisB: String): Boolean =
     if (esPais(paisA) and esPais(paisB))
       obtenerPais(paisA).esLimitrofeDe(obtenerPais(paisB))
@@ -40,53 +41,23 @@ object Observatorio {
     else
       throw Exception("Algún pais es inválido.")
 
-/*
-  fun necesitanTraduccion(paisA: String, paisB: String): Boolean {
-
-    return obtenerPais(paisA)!!.idiomasOficiales.intersect(obtenerPais(paisB)!!.idiomasOficiales).isEmpty()
-  }
-*/
   fun compartenBloqueRegional(paisA: String, paisB: String): Boolean =
     if (esPais(paisA) and esPais(paisB))
       obtenerPais(paisA).comparteBloqueRegionalCon(obtenerPais(paisB))
     else
       throw Exception("Algún pais es inválido.")
 
-/*
-  fun compartenBloqueRegional(paisA: String, paisB: String): Boolean{
-    return obtenerPais(paisA)!!.bloquesRegionales.intersect(obtenerPais(paisB)!!.bloquesRegionales).isNotEmpty()
-  }
-*/
 
-/*
- * Conocer si son potenciales aliados.
- */
   fun sonPotencialesAliados(paisA: String, paisB: String): Boolean =
     !necesitanTraduccion(paisA, paisB) and compartenBloqueRegional(paisA, paisB)
 
-/* 
- * Saber si conviene ir de compras.
- */
-/*
-  fun convieneIrDeComprasDesdeA(paisOrigen: String, paisDestino: String): Boolean {
 
-      return obtenerPais(paisDestino)!!.cotizacionDolar > obtenerPais(paisOrigen)!!.cotizacionDolar
-  }
- */
   fun convieneIrDeComprasDesdeA(paisOrigen: String, paisDestino: String): Boolean =
     if (esPais(paisOrigen) and esPais(paisDestino))
       obtenerPais(paisOrigen).convieneIrDeComprasA(obtenerPais(paisDestino))
     else
       throw Exception("Algún pais es inválido.")
-/* 
- * Conocer a cuánto equivale un determinado monto en la moneda local, 
- * transformado en la moneda del país de destino.
- */
-/*
-  fun aCuantoEquivaleEn(monto: Double, paisOrigen: String, paisDestino: String): Double{
-    return monto/obtenerPais(paisOrigen)!!.cotizacionDolar * obtenerPais(paisDestino)!!.cotizacionDolar
-  }
-*/
+
   fun aCuantoEquivaleEn(monto: Double, paisOrigen: String, paisDestino: String): Double =
     if (esPais(paisOrigen) and esPais(paisDestino))
       obtenerPais(paisOrigen).aCuantoEquivaleEn(monto, obtenerPais(paisDestino))
@@ -105,20 +76,8 @@ object Observatorio {
  * Obtener los códigos ISO de los 5 países con mayor densidad poblacional.
  */
   fun codigosPaisesMasDensamentePoblados(): List<String> =
-    paises.sortedBy { p->p.densidadPoblacional() }.take(5).map { p -> p.codigoIso3 }.orEmpty()
+    paises.sortedByDescending { p->p.densidadPoblacional() }.take(5).map { p -> p.codigoIso3 }.orEmpty()
 
-/*
-  fun codigosPaisesMasDensamentePoblados(): MutableList<String> {
-    var densidades = paises.map { p->p.densidadPoblacional() }.sorted().take(5)
-    var codigosISO: MutableList<String> = mutableListOf()
-
-    densidades.forEach() {
-      codigosISO.addAll(paises.filter { p -> p.densidadPoblacional() == it }.map { p -> p.codigoIso3 })
-    }
-
-    return codigosISO
-  }
-*/
 /*
  * Indicar el nombre del continente con más paises plurinacionales.
  */
