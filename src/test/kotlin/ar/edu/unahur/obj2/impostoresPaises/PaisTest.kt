@@ -17,7 +17,7 @@ class PaisTest : DescribeSpec ({
   )
 
   describe("Test de Pais") {
-    it("Comprobación de atributos") {
+    it("Comprobacion de atributos") {
       argentina.esPlurinacional().shouldBe(true)
       argentina.agregarPaisLimitrofe(brasil)
       argentina.esUnaIsla().shouldBe(false)
@@ -29,6 +29,11 @@ class PaisTest : DescribeSpec ({
       argentina.convieneIrDeComprasA(brasil).shouldBe(false)
       brasil.convieneIrDeComprasA(argentina).shouldBe(true)
       argentina.aCuantoEquivaleEn(20000.00, brasil).shouldBe(797.93 plusOrMinus 0.01)
+    }
+    it("Vecino mas poblado"){
+      brasil.sonLimitrofesCon(argentina)
+      brasil.vecinoMasPoblado().shouldBe(brasil)
+      argentina.vecinoMasPoblado().shouldBe(brasil)
     }
   }
 })
