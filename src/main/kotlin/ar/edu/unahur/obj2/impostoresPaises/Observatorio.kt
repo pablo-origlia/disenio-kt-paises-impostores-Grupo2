@@ -1,4 +1,29 @@
 package ar.edu.unahur.obj2.impostoresPaises
+
+
+interface interfaceAPI {
+	fun todosLosPaises(): List<Pais>
+
+  fun buscarPaisesPorNombre(nombre: String): List<Pais>
+
+  fun paisConCodigo(codigoIso3: String): Pais    
+}
+
+class AdaptadorAPI(val adaptee: RestCountriesAPI): interfaceAPI {
+    
+	override fun todosLosPaises(): List<Pais> {
+    TODO("not implemented")
+  }
+
+  override fun buscarPaisesPorNombre(nombre: String): List<Pais> {
+    TODO("not implemented")
+  }
+
+  override fun paisConCodigo(codigoIso3: String): Pais {
+    TODO("not implemented")
+  }
+}
+
 /*
  * Etapa 2 - Observatorio
  * Crear al Observatorio, que es un objeto que conoce a todos los países y debe 
@@ -10,6 +35,28 @@ package ar.edu.unahur.obj2.impostoresPaises
  */
 object Observatorio {
   val paises = mutableListOf<Pais>()
+
+
+/*
+ * Etapa 3 - Etapa 3 - Conectando con el mundo real 
+ *
+ */
+
+  // Servicio a adaptar.
+  val api = RestCountriesAPI()
+  // Servicio adaptado.
+  val apiAdaptada = AdaptadorAPI(api)
+  // A partir de acá podemos utilizar los metodos de API pero nos va a devolver 
+  // en vez del formato <Country> devuelve <Pais> gracias al adaptador.
+  // 
+  // Ejemplo: 	apiAdaptada.todosLosPaises(): List<Pais>
+  //            apiAdaptada.buscarPaisesPorNombre("Argentina"): List<Pais>
+  //            apiAdaptada.paisConCodigo("ARG"): Pais
+
+
+
+
+
 
   fun agregarPais(pais: Pais) = paises.add(pais)
 
