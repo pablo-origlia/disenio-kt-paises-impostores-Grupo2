@@ -1,5 +1,7 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
+import ar.edu.unahur.obj2.impostoresPaises.api.Country
+import ar.edu.unahur.obj2.impostoresPaises.api.RestCountriesAPI
 
 interface interfaceAPI {
 	fun todosLosPaises(): List<Pais>
@@ -12,15 +14,21 @@ interface interfaceAPI {
 class AdaptadorAPI(val adaptee: RestCountriesAPI): interfaceAPI {
     
 	override fun todosLosPaises(): List<Pais> {
-    TODO("not implemented")
+    val allCountries: List<Country>
+    allCountries = adaptee.todosLosPaises()
+    TODO("Ya estan los datos pedidos a la API, falta transformalos a lista de Paises.")
   }
 
   override fun buscarPaisesPorNombre(nombre: String): List<Pais> {
-    TODO("not implemented")
+    val countries: List<Country>
+    countries = adaptee.buscarPaisesPorNombre(nombre)
+    TODO("Ya estan los datos pedidos a la API, falta transformalos a lista de Paises.")
   }
 
   override fun paisConCodigo(codigoIso3: String): Pais {
-    TODO("not implemented")
+    val country: Country
+    country = adaptee.paisConCodigo(codigoIso3)
+    TODO("Ya estan los datos pedidos a la API, falta transformalos a Pais.")
   }
 }
 
@@ -34,7 +42,7 @@ class AdaptadorAPI(val adaptee: RestCountriesAPI): interfaceAPI {
  * object que simplifica la implementación del patrón.
  */
 object Observatorio {
-  val paises = mutableListOf<Pais>()
+  var paises = mutableListOf<Pais>()
 
 
 /*
@@ -56,7 +64,7 @@ object Observatorio {
 
 
 
-
+  fun reset() { paises = mutableListOf<Pais>()}
 
   fun agregarPais(pais: Pais) = paises.add(pais)
 

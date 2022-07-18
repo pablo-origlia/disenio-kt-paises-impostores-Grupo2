@@ -9,7 +9,6 @@ import io.kotest.matchers.doubles.plusOrMinus
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 
-
 class ObservatorioTest : DescribeSpec ({
 
   val argentina = Pais( "Argentina", "ARG",47000000, 2780400.0, "America",
@@ -37,14 +36,18 @@ class ObservatorioTest : DescribeSpec ({
     "ISK", 1.23, listOf("OTAN"), listOf("ingles","islandes")
   )
 
-  argentina.agregarPaisLimitrofeMutuo(chile)
-  argentina.agregarPaisLimitrofeMutuo(brasil)
-  Observatorio.agregarPais(argentina)
-  Observatorio.agregarPais(brasil)
-  Observatorio.agregarPais(chile)
-  Observatorio.agregarPais(australia)
-  Observatorio.agregarPais(groenlandia)
-  Observatorio.agregarPais(islandia)
+
+
+    argentina.agregarPaisLimitrofeMutuo(chile)
+    argentina.agregarPaisLimitrofeMutuo(brasil)
+
+    Observatorio.agregarPais(argentina)
+    Observatorio.agregarPais(brasil)
+    Observatorio.agregarPais(chile)
+    Observatorio.agregarPais(australia)
+    Observatorio.agregarPais(groenlandia)
+    Observatorio.agregarPais(islandia)
+
 
   describe("Test de Observatorio") {
 
@@ -87,8 +90,15 @@ class ObservatorioTest : DescribeSpec ({
       Observatorio.continenteConMasPaisesPlurinacionales().shouldBe("America")
     }
 
-    /*it("Codigos ISO paises son mayor densidad poblacional") {
+    it("Codigos ISO paises son mayor densidad poblacional") {
+      Observatorio.reset()
+      Observatorio.agregarPais(argentina)
+      Observatorio.agregarPais(brasil)
+      Observatorio.agregarPais(chile)
+      Observatorio.agregarPais(australia)
+      Observatorio.agregarPais(groenlandia)
+      Observatorio.agregarPais(islandia)
       Observatorio.codigosPaisesMasDensamentePoblados().shouldContainExactlyInAnyOrder("CHI", "ARG", "BRA","GRL","ISL")
-    }*/
+    }
   }
 })
