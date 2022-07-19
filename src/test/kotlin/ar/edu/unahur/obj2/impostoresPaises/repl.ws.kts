@@ -7,16 +7,40 @@ import io.kotest.core.spec.style.DescribeSpec
 // Algunos ejemplos para que jueguen un poco
 // con lo que devuelve la API
 
-//val api = RestCountriesAPI()
-//api.buscarPaisesPorNombre("guay")
-//api.paisConCodigo("CHL")
+val api = RestCountriesAPI()
 
-//val currencyApi = CurrencyConverterAPI("poné acá la API key")
-//// PEN es el código del sol peruano
-//currencyApi.convertirDolarA("PEN")
+api.buscarPaisesPorNombre("argentina")
+api.paisConCodigo("CHL")
+api.todosLosPaises()
+/*
+val currencyApi = CurrencyConverterAPI("poné acá la API key")
+// PEN es el código del sol peruano
+currencyApi.convertirDolarA("PEN")*/
 
+val pais = api.buscarPaisesPorNombre("argentina")
 
+val nombre = pais.first().name
+val codigoIso3 = pais.first().alpha3Code
+var poblacion = pais.first().population
+var superficie = pais.first().area
+val continente = pais.first().region
+var codigoMoneda= pais.first().currencies?.first()?.code
+//var cotizacionDolar=
+val bloquesRegionales= pais.first().regionalBlocs
+val idiomasOficiales= pais.first().languages
+val paisesLimitrofes= pais.first().borders
 
+nombre
+codigoIso3
+poblacion
+superficie
+continente
+codigoMoneda
+bloquesRegionales
+idiomasOficiales
+paisesLimitrofes
+
+/*
 val argentina = Pais( "Argentina", "ARG",47000000, 2780400.0, "America",
     "ARS", 135.6, listOf("UNASUR", "MERCOSUR"), listOf("español","guarani","qom")
 )
@@ -77,4 +101,4 @@ Observatorio.paises.sortedByDescending { p->p.densidadPoblacional() }.take(5)
 Observatorio.paises.sortedByDescending { p->p.densidadPoblacional() }.take(5).map { p -> p.codigoIso3 }.toSet()
 Observatorio.paises.map { p->p.nombre }
 
-Observatorio.paises.toSet().toList().sortedByDescending { p->p.densidadPoblacional() }.map { p -> p.codigoIso3 }.orEmpty()
+Observatorio.paises.toSet().toList().sortedByDescending { p->p.densidadPoblacional() }.map { p -> p.codigoIso3 }.orEmpty()*/

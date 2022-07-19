@@ -11,6 +11,8 @@ import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 
 class ObservatorioTest : DescribeSpec ({
 
+  Observatorio.reset()
+
   val argentina = Pais( "Argentina", "ARG",47000000, 2780400.0, "America",
     "ARS", 222.75, listOf("UNASUR", "MERCOSUR"), listOf("español","guarani","qom")
   )
@@ -35,8 +37,6 @@ class ObservatorioTest : DescribeSpec ({
     "Islandia","ISL",457050,103000.0,"Europa",
     "ISK", 1.23, listOf("OTAN"), listOf("ingles","islandes")
   )
-
-
 
     argentina.agregarPaisLimitrofeMutuo(chile)
     argentina.agregarPaisLimitrofeMutuo(brasil)
@@ -91,13 +91,6 @@ class ObservatorioTest : DescribeSpec ({
     }
 
     it("Codigos ISO paises son mayor densidad poblacional") {
-      Observatorio.reset()
-      Observatorio.agregarPais(argentina)
-      Observatorio.agregarPais(brasil)
-      Observatorio.agregarPais(chile)
-      Observatorio.agregarPais(australia)
-      Observatorio.agregarPais(groenlandia)
-      Observatorio.agregarPais(islandia)
       Observatorio.codigosPaisesMasDensamentePoblados().shouldContainExactlyInAnyOrder("CHI", "ARG", "BRA","GRL","ISL")
     }
   }
