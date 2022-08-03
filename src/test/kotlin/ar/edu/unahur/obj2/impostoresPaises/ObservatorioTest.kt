@@ -17,7 +17,7 @@ class ObservatorioTest : DescribeSpec ({
   )
 
   val brasil = Pais("Brasil","BRA",208388000,8515770.00,"America",
-    "REA",5.41, listOf("UNASUR", "MERCOSUR"), listOf("portugues")
+    "REA",5.41, listOf("UNASUR", "MERCOSUR"), listOf("portugues","por")
   )
 
   val chile = Pais("Chile","CHI",18430408,756950.00,"America",
