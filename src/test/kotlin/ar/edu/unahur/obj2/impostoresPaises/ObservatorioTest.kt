@@ -2,7 +2,6 @@ import ar.edu.unahur.obj2.impostoresPaises.Observatorio
 import ar.edu.unahur.obj2.impostoresPaises.Pais
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
-import io.kotest.engine.toTestResult
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.doubles.plusOrMinus
@@ -14,11 +13,11 @@ class ObservatorioTest : DescribeSpec ({
   Observatorio.reset()
 
   val argentina = Pais( "Argentina", "ARG",47000000, 2780400.0, "America",
-    "ARS", 222.75, listOf("UNASUR", "MERCOSUR"), listOf("español","guarani","qom")
+    "ARS", 222.75, listOf("UNASUR", "MERCOSUR"), listOf("español","guarani","qom","cordobes")
   )
 
   val brasil = Pais("Brasil","BRA",208388000,8515770.00,"America",
-    "REA",5.41, listOf("UNASUR", "MERCOSUR"), listOf("portugues")
+    "REA",5.41, listOf("UNASUR", "MERCOSUR"), listOf("portugues", "portuñol")
   )
 
   val chile = Pais("Chile","CHI",18430408,756950.00,"America",
