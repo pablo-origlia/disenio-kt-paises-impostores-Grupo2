@@ -13,7 +13,7 @@ class ObservatorioTest : DescribeSpec ({
   Observatorio.reset()
 
   val argentina = Pais( "Argentina", "ARG",47000000, 2780400.0, "America",
-    "ARS", 222.75, listOf("UNASUR", "MERCOSUR"), listOf("español","guarani","qom")
+    "ARS", 222.75, listOf("UNASUR", "MERCOSUR"), listOf("español","guarani","qom","quechua")
   )
 
   val brasil = Pais("Brasil","BRA",208388000,8515770.00,"America",
